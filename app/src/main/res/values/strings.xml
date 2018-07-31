@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Ekeeda_Vendor</string>
+    <string name="error_field_required">all field are mendatory</string>
+
+</resources>

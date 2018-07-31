@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    >
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorPrimaryDark"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+        <TextView
+            android:id="@+id/toolbar_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Revenues"
+            android:textColor="@color/WhiteSmoke"
+            android:textSize="22dp"
+            android:textStyle="bold"
+            android:typeface="normal" />
+
+
+    </android.support.v7.widget.Toolbar>
+
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="?actionBarSize"
+        android:background="@color/card"
+
+        >
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+
+            >
+
+
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:focusableInTouchMode="true"
+                    android:layout_marginBottom="20dp"
+                    >
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="25dp"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginRight="30dp"
+                        >
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="From Date"
+                            android:background="@drawable/bg_edit_text"
+                            android:padding="10dp"
+                            android:id="@+id/fr"
+                            android:textSize="17dp"
+                            android:gravity="center"
+                            android:layout_weight="1"
+                            android:layout_marginRight="5dp"
+                            />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="To Date"
+                            android:textSize="17dp"
+                            android:background="@drawable/bg_edit_text"
+                            android:padding="10dp"
+                            android:gravity="center"
+                            android:id="@+id/to"
+                            android:layout_weight="1"
+                            android:layout_marginLeft="5dp"
+                            />
+
+
+                    </LinearLayout>
+
+
+                    <com.jaredrummler.materialspinner.MaterialSpinner
+                        app:ms_dropdown_max_height="250dp"
+                        app:ms_dropdown_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:layout_height="45dp"
+                        android:layout_marginTop="20dp"
+                        app:ms_text_color="@color/Black"
+                        app:ms_background_color="@color/WhiteSmoke"
+                        android:layout_marginRight="25dp"
+                        android:layout_marginLeft="25dp"
+                        android:hint="Select Vendor"
+                        android:id="@+id/employee"
+                        />
+
+
+                    <com.andexert.library.RippleView
+                        android:id="@+id/more"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="80dp"
+                        android:layout_marginRight="80dp"
+                        android:layout_marginTop="50dp"
+                        android:layout_marginBottom="20dp"
+                        rv_centered="true"
+                        app:rv_rippleDuration="150"
+                        android:background="@drawable/buttonshp2"
+                        >
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="SUBMIT"
+                            android:textColor="#ffffff"
+                            android:textSize="18dp"
+                            android:gravity="center"
+
+                            />
+                    </com.andexert.library.RippleView>
+
+                    <android.support.v7.widget.RecyclerView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/recordlist"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="5dp"
+                        />
+
+                </LinearLayout>
+
+            </ScrollView>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+
+</android.support.design.widget.CoordinatorLayout>
