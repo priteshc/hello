@@ -8,6 +8,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -17,6 +18,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.andexert.library.RippleView;
+import com.example.hp.ekeeda_vendor.adapter.Admin_Adapter;
 import com.example.hp.ekeeda_vendor.inerface.Revenuview;
 import com.example.hp.ekeeda_vendor.model.Detail;
 import com.example.hp.ekeeda_vendor.model.GPlist;
@@ -50,9 +52,11 @@ public class AdminActivity extends AppCompatActivity implements DatePickerDialog
     String coupon,usertype;
     private SharedPreferences sharedPreferences;
     private List<Detail>detailList;
+    List<GPlist>gPlists;
     private MaterialSpinner materialSpinner;
     private ArrayList<String> pername;
     private RecyclerView recyclerView;
+     private Admin_Adapter adminAdapter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -66,14 +70,19 @@ public class AdminActivity extends AppCompatActivity implements DatePickerDialog
 
         recyclerView = findViewById(R.id.recordlist);
 
+        recyclerView.setLayoutManager(new LinearLayoutManager(context,LinearLayoutManager.VERTICAL,false));
         sharedPreferences = this.getSharedPreferences("Coupon",0);
 
         coupon = sharedPreferences.getString("Cup","");
         usertype = sharedPreferences.getString("Type","");
 
+        gPlists = new ArrayList<>();
+
         materialSpinner = (MaterialSpinner) findViewById(R.id.employee);
 
         pername = new ArrayList<>();
+
+        adminAdapter = new Admin_Adapter(context);
 
 
         calendar = Calendar.getInstance();
@@ -115,7 +124,7 @@ public class AdminActivity extends AppCompatActivity implements DatePickerDialog
 
                     if (!from.getText().toString().isEmpty() && !to.getText().toString().isEmpty() && materialSpinner.getSelectedIndex()!= 0) {
 
-                        revenuePresenter.getReg(from.getText().toString(), to.getText().toString(), coupon,usertype);
+                        revenuePresenter.getReg(from.getText().toString(), to.getText().toString(), gPlists.get(materialSpinner.getSelectedIndex()-1).getCouponCode(),usertype);
 
                     } else {
 
@@ -218,30 +227,22 @@ public class AdminActivity extends AppCompatActivity implements DatePickerDialog
 
         detailList = data;
 
-        for(int i=0;i<detailList.size();i++){
+        adminAdapter.SetList(data);
 
-
-            float f = Float.valueOf(detailList.get(i).getNumActualFees());
-            int m = Math.round(f);
-            sal = sal + m;
-
-        }
-
-        sales.setText(String.valueOf(sal));
-        int i = detailList.size() * 300;
-        commion.setText(String.valueOf(i));
-
+        recyclerView.setAdapter(adminAdapter);
 
     }
 
     @Override
     public void showListSuccessMsg(List<GPlist> data) {
 
+        gPlists  = data;
         for(int i=0;i<data.size();i++) {
 
             pername.add(data.get(i).getFullName());
 
         }
+
 
         pername.add(0,"select Vendor");
         materialSpinner.setItems(pername);
@@ -251,7 +252,7 @@ public class AdminActivity extends AppCompatActivity implements DatePickerDialog
     @Override
     public void showFLoginSuccessMsg(String success) {
 
-        linearLayout.setVisibility(View.GONE);
+//        linearLayout.setVisibility(View.GONE);
 
         Toast.makeText(context,"No record found",Toast.LENGTH_LONG).show();
 
