@@ -239,6 +239,11 @@ public class AllRecord extends AppCompatActivity implements Revenuview {
     }
 
     @Override
+    public void showPaySuccessMsg(String success) {
+
+    }
+
+    @Override
     public void showprogress() {
 
         progressDialog.show();

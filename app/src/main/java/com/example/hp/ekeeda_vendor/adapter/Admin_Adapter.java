@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 
 import com.example.hp.ekeeda_vendor.R;
 import com.example.hp.ekeeda_vendor.holder.Admin_Holder;
+import com.example.hp.ekeeda_vendor.inerface.ComplainCallback;
 import com.example.hp.ekeeda_vendor.model.Detail;
 
 import java.text.ParseException;
@@ -24,7 +25,7 @@ public class Admin_Adapter extends RecyclerView.Adapter<Admin_Holder> {
 
     Context mContext;
     List<Detail> purchaseListPojos = new ArrayList<>();
-
+    ComplainCallback complainCallback;
     //private RemoveCall removeCall;
 
     private int lastPosition = -1;
@@ -32,9 +33,10 @@ public class Admin_Adapter extends RecyclerView.Adapter<Admin_Holder> {
 
 
 
-    public Admin_Adapter(Context c) {
+    public Admin_Adapter(Context c,ComplainCallback complainCallback1) {
 
         mContext = c;
+       this.complainCallback  = complainCallback1;
 
 
       //  this.removeCall = removeCall;
@@ -71,6 +73,14 @@ public class Admin_Adapter extends RecyclerView.Adapter<Admin_Holder> {
         holder.sem.setText(list.getVcrSemester());
         holder.stream.setText(list.getVcrStream());
         holder.status.setText(list.getVcrStatus());
+
+        holder.pay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                complainCallback.onMethodCallback(purchaseListPojos.get(position).getPayId());
+            }
+        });
 
      /*   holder.delete.setOnClickListener(new View.OnClickListener() {
             @Override

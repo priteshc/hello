@@ -2,6 +2,7 @@ package com.example.hp.ekeeda_vendor.holder;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -18,6 +19,7 @@ public class Admin_Holder extends RecyclerView.ViewHolder {
     public TextView date,time,subject,univercity,stream,sem,status;
     public LinearLayout continer;
     public ImageView remove;
+    public Button pay;
 
 
     public Admin_Holder(View itemView) {
@@ -30,7 +32,7 @@ public class Admin_Holder extends RecyclerView.ViewHolder {
         stream = (TextView) itemView.findViewById(R.id.stream);
         sem = (TextView) itemView.findViewById(R.id.sem);
         status = (TextView) itemView.findViewById(R.id.satus);
-
+        pay = itemView.findViewById(R.id.pay);
        // remove = itemView.findViewById(R.id.remove);
 
       //  continer = itemView.findViewById(R.id.container);

@@ -5,6 +5,7 @@ import android.support.annotation.Nullable;
 
 import com.example.hp.ekeeda_vendor.model.ListPojo;
 import com.example.hp.ekeeda_vendor.model.LoginPojo;
+import com.example.hp.ekeeda_vendor.model.Paypojo;
 import com.example.hp.ekeeda_vendor.model.RecordPojo;
 
 import java.util.ArrayList;
@@ -39,6 +40,11 @@ public interface AllApi {
     @FormUrlEncoded
     @POST("GrowthPartnerList")
     Call<ListPojo> getList(@Field("Fdate") String uname);
+
+    @FormUrlEncoded
+    @POST("GrowthUpdate")
+    Call<Paypojo> getUpdate(@Field("Pid") String response);
+
 
 
     //, @Field("Coupon") String coupon

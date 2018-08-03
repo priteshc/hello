@@ -19,6 +19,7 @@ import android.widget.Toast;
 
 import com.andexert.library.RippleView;
 import com.example.hp.ekeeda_vendor.adapter.Admin_Adapter;
+import com.example.hp.ekeeda_vendor.inerface.ComplainCallback;
 import com.example.hp.ekeeda_vendor.inerface.Revenuview;
 import com.example.hp.ekeeda_vendor.model.Detail;
 import com.example.hp.ekeeda_vendor.model.GPlist;
@@ -35,7 +36,7 @@ import java.util.List;
 import cn.pedant.SweetAlert.SweetAlertDialog;
 
 
-public class AdminActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener,Revenuview {
+public class AdminActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener,Revenuview,ComplainCallback {
 
     private Calendar calendar;
     private TextView from,to,sales,commion;
@@ -82,7 +83,7 @@ public class AdminActivity extends AppCompatActivity implements DatePickerDialog
 
         pername = new ArrayList<>();
 
-        adminAdapter = new Admin_Adapter(context);
+        adminAdapter = new Admin_Adapter(context,this);
 
 
         calendar = Calendar.getInstance();
@@ -223,7 +224,7 @@ public class AdminActivity extends AppCompatActivity implements DatePickerDialog
     @Override
     public void showRLoginSuccessMsg(List<Detail> data,String sale,String comm) {
 
-        linearLayout.setVisibility(View.VISIBLE);
+//        linearLayout.setVisibility(View.VISIBLE);
 
         detailList = data;
 
@@ -259,6 +260,13 @@ public class AdminActivity extends AppCompatActivity implements DatePickerDialog
     }
 
     @Override
+    public void showPaySuccessMsg(String success) {
+
+        Toast.makeText(context,success,Toast.LENGTH_SHORT).show();
+
+    }
+
+    @Override
     public void showprogress() {
 
         progressDialog.show();
@@ -268,6 +276,14 @@ public class AdminActivity extends AppCompatActivity implements DatePickerDialog
     public void hideprogress() {
 
         progressDialog.dismiss();
+    }
+
+    @Override
+    public void onMethodCallback(String tid) {
+
+       // Toast.makeText(context,tid,Toast.LENGTH_SHORT).show();
+        revenuePresenter.getpay(tid);
+
     }
 }
 

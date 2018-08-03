@@ -10,6 +10,7 @@ import com.example.hp.ekeeda_vendor.inerface.Loginview;
 import com.example.hp.ekeeda_vendor.inerface.Revenuview;
 import com.example.hp.ekeeda_vendor.model.ListPojo;
 import com.example.hp.ekeeda_vendor.model.LoginPojo;
+import com.example.hp.ekeeda_vendor.model.Paypojo;
 import com.example.hp.ekeeda_vendor.model.RecordPojo;
 
 import retrofit2.Call;
@@ -126,6 +127,42 @@ public class RevenuePresenter {
 
 
     }
+
+    public void getpay(String fdate){
+
+        loginview.showprogress();
+
+        Call<Paypojo> pojoCall = retrofitBuild.allApi().getUpdate(fdate);
+
+        pojoCall.enqueue(new Callback<Paypojo>() {
+            @Override
+            public void onResponse(Call<Paypojo> call, Response<Paypojo> response) {
+
+                loginview.hideprogress();
+
+                Log.d("Msg",String.valueOf(response.code()));
+
+               loginview.showPaySuccessMsg(response.message());
+
+            }
+
+            @Override
+            public void onFailure(Call<Paypojo> call, Throwable t) {
+
+                loginview.hideprogress();
+
+                System.out.println("Error:" + t.getMessage());
+
+                loginview.showRErrorMeassage();
+
+            }
+        });
+
+
+    }
+
+
+
 
 
 }

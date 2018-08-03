@@ -53,6 +53,17 @@ public class Detail {
     @SerializedName("vcrSemester")
     @Expose
     private String vcrSemester;
+    @SerializedName("PaymentID")
+    @Expose
+    private String payId;
+
+    public String getPayId() {
+        return payId;
+    }
+
+    public void setPayId(String payId) {
+        this.payId = payId;
+    }
 
     public String getOrderCode() {
         return orderCode;

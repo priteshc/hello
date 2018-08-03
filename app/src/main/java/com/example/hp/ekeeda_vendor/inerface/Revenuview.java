@@ -22,6 +22,9 @@ Revenuview {
 
     void showFLoginSuccessMsg(String success);
 
+    void showPaySuccessMsg(String success);
+
+
     void showprogress();
 
     void hideprogress();

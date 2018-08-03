@@ -255,6 +255,11 @@ public class Commission_Activity extends AppCompatActivity implements DatePicker
     }
 
     @Override
+    public void showPaySuccessMsg(String success) {
+
+    }
+
+    @Override
     public void showprogress() {
 
         progressDialog.show();
